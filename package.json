@@ -14,7 +14,8 @@
     "test": "jest --runInBand --forceExit --detectOpenHandles",
     "test:unit": "jest tests/unit --runInBand --forceExit",
     "test:integration": "jest tests/integration --runInBand --forceExit --detectOpenHandles",
-    "test:coverage": "jest --coverage --runInBand --forceExit --detectOpenHandles"
+    "test:coverage": "jest --coverage --runInBand --forceExit --detectOpenHandles",
+    "build": "cd frontend && npm install && npm run build"
   },
   "keywords": ["reimbursements", "rbac", "express", "postgresql", "sequelize"],
   "author": "Razorpay Engineering",

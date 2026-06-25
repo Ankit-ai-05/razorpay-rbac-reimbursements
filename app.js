@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -58,9 +59,13 @@ app.get('/', (req, res) => {
 // ─── API Routes ───────────────────────────────────────────────────────────────
 app.use('/rest', routes);
 
-// ─── 404 Handler ─────────────────────────────────────────────────────────────
-app.use((req, res) => {
-  sendError(res, `Route ${req.method} ${req.originalUrl} not found`, 404);
+// ─── Serve Frontend ───────────────────────────────────────────────────────────
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'frontend/dist')));
+
+// Anything that doesn't match the API routes should return the React index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
 });
 
 // ─── Global Error Handler (must be LAST) ─────────────────────────────────────
