@@ -6,7 +6,7 @@ module.exports = {
   cookieOptions: {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
     maxAge: parseInt(process.env.COOKIE_MAX_AGE_MS, 10) || 86400000, // 24h
   },
 };

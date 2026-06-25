@@ -42,7 +42,7 @@ class AuthController {
     try {
       res.clearCookie('token', {
         httpOnly: true,
-        sameSite: 'strict',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
         secure: process.env.NODE_ENV === 'production',
       });
       return sendSuccess(res, { message: 'Logged out successfully' });
