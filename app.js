@@ -51,6 +51,10 @@ app.get('/health', (req, res) => {
   res.json({ status: 'success', data: { service: 'Reimbursements API', uptime: process.uptime() } });
 });
 
+app.get('/', (req, res) => {
+  res.json({ status: 'success', message: 'Reimbursements API is running. See /rest for API endpoints.' });
+});
+
 // ─── API Routes ───────────────────────────────────────────────────────────────
 app.use('/rest', routes);
 
